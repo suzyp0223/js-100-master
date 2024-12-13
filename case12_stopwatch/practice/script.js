@@ -1,6 +1,7 @@
 ; (function () {
   'use strict'
 
+  // 20241213금
   const get = (target) => {
     return document.querySelector(target)
   };
