@@ -75,7 +75,7 @@
       this.startTime = 0
       this.elapsedTime = 0
 
-      //interval, startTime, elapsedTime초기화 않하면 기존시간이 그대로 나옴.
+      //interval, startTime, elapsedTime초기화 안하면 기존 시간이 그대로 나옴.
       console.log("interval:", this.interval);
       console.log("startTime:", this.startTime);
       console.log("elapsedTime:", this.elapsedTime);
