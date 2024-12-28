@@ -12,7 +12,7 @@
   const $form = get('.todo_form')
   const $todoInput = get('.todo_input')
   const $pagination = get('.pagination')
-  const API_URL = `http://localhost:3000/todos`
+  const API_URL = `http://localhost:5501/todos`
 
   let currentPage = 1
   const totalCount = 53
@@ -74,7 +74,7 @@
             <div class="content">
               <input
                 type="checkbox"
-                class='todo_checkbox' 
+                class='todo_checkbox'
                 ${isChecked}
               />
               <label>${content}</label>
@@ -101,6 +101,7 @@
   }
 
   const renderAllTodos = (todos) => {
+
     $todos.innerHTML = ''
     todos.forEach((item) => {
       const todoElement = createTodoElement(item)

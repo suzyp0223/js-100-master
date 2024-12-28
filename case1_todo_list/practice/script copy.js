@@ -10,24 +10,32 @@
   const $todoInput = get('.todo_input');
   const API_URL = `http://localhost:5501/todos`;
 
-
   const createTodoElement = (item) => {
-    const { id, content, completed } = item
+    const num = Math.max(...Array.from($todos.children).map(item => +item.dataset.id || 0), 0);
+    console.log('num: ', num);
+    console.log('num>>: ', typeof (num));
+    let addNum = num + 1;
+    console.log('?????? ', typeof (addNum));
+
+    const { id = addNum, content } = item
+    console.log("바뀐 id? ", id);
+    console.log('?..... ', typeof (addNum));
+
+
     const $todoItem = document.createElement('div')
-    // 체크 새로고침 후에도 남아있음.
-    const isChecked = completed ? 'checked' : '';
     $todoItem.classList.add('item')
-    $todoItem.dataset.id = id
+    $todoItem.dataset.id = id;
+    console.log('$todoItem.dataset.id???????: ', $todoItem.dataset.id);
 
     $todoItem.innerHTML = `
             <div class="content">
               <input
                 type="checkbox"
                 class='todo_checkbox'
-                ${isChecked}
+                id="checkbox_${id}
               />
-              <label>${content}</label>
-              <input type="text" value="${content}" />
+              <label for="checkbox_${id}">${content}</label>
+              <input type="text" id="input_content_${id}" value="${content}" />
             </div>
             <div class="item_buttons content_buttons">
               <button class="todo_edit_button">
@@ -138,4 +146,13 @@
  *  매개변수로 들어오는 데이타가 배열인지 객체인지 확인!,
  *  에러처리 필수!
  *
+ *
+ *             <div class="content">
+              <input
+                type="checkbox"
+                class='todo_checkbox'
+              />
+              <label for="input_content">${content}</label>
+              <input type="text" id="input_content" value="${content}" />
+            </div>
  */

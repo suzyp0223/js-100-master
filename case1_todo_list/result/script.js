@@ -20,7 +20,7 @@
             <div class="content">
               <input
                 type="checkbox"
-                class='todo_checkbox' 
+                class='todo_checkbox'
                 ${isChecked}
               />
               <label>${content}</label>
