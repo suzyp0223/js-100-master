@@ -116,12 +116,73 @@
       });
   };
 
+  const changeEditMode = (e) => {
+    const $item = e.target.closest('.item');
+    const $label = $item.querySelector('label');
+    const $editInput = $item.querySelector('input[type="text"]');
+    const $contentButtons = $item.querySelector('.content_buttons');
+    const $editButtons = $item.querySelector('.edit_buttons');
+    const value = $editInput.value;
+
+    if (e.target.className === 'todo_edit_button') {
+      $label.style.display = 'none';
+      $editInput.style.display = 'block';
+      $contentButtons.style.display = 'none';
+      $editButtons.style.display = 'block';
+      $editInput.focus(); // 수정버튼 클릭시 input에 커서 포커스이동.
+      $editInput.value = '';
+      $editInput.value = value;
+
+    };
+
+    if (e.target.className === 'todo_edit_cancel_button') {
+      $label.style.display = 'block';
+      $editInput.style.display = 'none';
+      $contentButtons.style.display = 'block';
+      $editButtons.style.display = 'none';
+      $editInput.value = $label.innerHTML; //
+
+    }
+
+  };
+
+  const editTodo = (e) => {
+    if (e.target.className !== 'todo_edit_confirm_button') return;
+    const $item = e.target.closest('.item');
+    const id = $item.dataset.id;
+    const $editInput = $item.querySelector('input[type="text"]');
+    const content = $editInput.value;
+
+    fetch(`${API_URL}/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content }),
+    }).then(getTodos)
+      .catch((err) => console.error(err))
+  };
+
+  const removeTodo = (e) => {
+    if (e.target.className !== 'todo_remove_button') return;
+    const $item = e.target.closest('.item');
+    const id = $item.dataset.id;
+
+    fetch(`${API_URL}/${id}`, {
+      method: 'DELETE'
+    })
+      .then(getTodos)
+      .catch((err) => console.error(err))
+
+  };
+
   const init = () => {
     window.addEventListener('DOMContentLoaded', () => {
       getTodos();
     });
     $form.addEventListener('submit', addTodo);
     $todos.addEventListener('click', toggleTodo);
+    $todos.addEventListener('click', changeEditMode);
+    $todos.addEventListener('click', editTodo);
+    $todos.addEventListener('click', removeTodo);
   }
   init()
 })()

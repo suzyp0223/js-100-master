@@ -22,7 +22,7 @@ https://github.com/typicode/json-server
 - 2. Create a db.json or db.json5 file
 - 3. npx json-server --watch db.json
 - 4. 크롬브라우저  http://localhost:3000/todos
-
+<!-- - 5. json-server --watch db.json --host localhost --port 5501 -->
 
 ### DOMContentLoaded
 

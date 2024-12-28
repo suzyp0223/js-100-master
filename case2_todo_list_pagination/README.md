@@ -1,4 +1,8 @@
 ## To do list 페이지네이션 구현
+<!-- -
+먼저 터미널에서 json-sever port를 로컬로 열기
+ json-server --watch db.json --host localhost --port 5501 -->
+
 
 - json-server를 활용해서 페이지네이션 구현
 

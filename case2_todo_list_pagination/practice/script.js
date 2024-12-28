@@ -12,12 +12,12 @@
   const $form = get('.todo_form')
   const $todoInput = get('.todo_input')
   const $pagination = get('.pagination');
-  const API_URL = `http://localhost:5501/todos`
+  const API_URL = `http://localhost:5500/todos`
 
-  let currentPage = 1;
+  const limit = 5;
+  let currentPage = 11;
   const totalCount = 53;
   const pageCount = 5;
-  const limit = 5;
 
   const pagination = () => {
     let totalPage = Math.ceil(totalCount / limit);
@@ -45,12 +45,11 @@
     }
 
     $pagination.innerHTML = html;
-
     const $currentPageNumber = get(`.pageNumber#page_${currentPage}`);
     $currentPageNumber.style.color = '#9dc0e9';
 
     const $currentPageNumbers = document.querySelectorAll('.pagination button');
-    $currentPageNumbers.forEach(button => {
+    $currentPageNumbers.forEach((button) => {
       button.addEventListener('click', () => {
         if (button.dataset.fn === 'prev') {
           currentPage = prev;
@@ -58,6 +57,7 @@
           currentPage = next;
         } else {
           currentPage = button.innerText;
+          // currentPage = parseInt(button.innerText, 10); // 숫자로 변환
         }
 
         // 값이 바뀌면 다시 호출해야함.
