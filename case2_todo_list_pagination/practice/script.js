@@ -8,6 +8,9 @@
     return document.querySelectorAll(target)
   }
 
+
+  // 먼저 터미널에서 json - sever port를 로컬로 열기
+  // json - server--watch db.json--host localhost--port 5500
   const $todos = get('.todos')
   const $form = get('.todo_form')
   const $todoInput = get('.todo_input')
