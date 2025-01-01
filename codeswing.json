@@ -1,0 +1,5 @@
+{
+  "entry": "../case3_baseball/practice/index.html",
+  "styles": ["../case3_baseball/practice/style.css"],
+  "scripts": ["../case3_baseball/practice/script.js"]
+}
