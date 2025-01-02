@@ -13,9 +13,6 @@
 */
 
 
-
-
-
 ; (() => {
   'use strict'
 
@@ -62,9 +59,7 @@
   /** 시도를 했을 때 number: 내가 입력한 숫자, hint:현재 어떤 */
   const onPlayed = (number, hint) => {
     return `<em>${trial}차 시도</em>: ${number}, ${hint}`;
-
   };
-
 
   /** 번호가 같은가? */
   const isCorrect = (number, answer) => {
@@ -75,7 +70,6 @@
   const isDuplicate = (number) => {
     return [...new Set(number.split(''))].length !== digit;
   };
-
 
   /** 스트라이크 카운트는 몇개? */
   const getStrikes = (number, answer) => {
@@ -90,7 +84,6 @@
 
     return strike;
   };
-
 
   /** 볼 카운트는 몇개? */
   const getBalls = (number, answer) => {
@@ -111,7 +104,6 @@
     return ball;
   };
 
-
   /** 시도에 따른 결과는? */
   const getResult = (number, answer) => {
     if (isCorrect(number, answer)) {
@@ -131,7 +123,7 @@
   event.preventDefault();
 
     if (!!end) {
-      return;
+      return;  //end가 true면 리턴.
     }
 
     const inputNumber = $input.value;

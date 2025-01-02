@@ -208,8 +208,11 @@ section {
 .contents figcaption .description strong {
   width: 100%;
   margin-bottom: 4px;
+  
+  /* 글자 ...처리 */
   display: -webkit-box;
   -webkit-line-clamp: 2;
+
   /* autoprefixer: off */
   -webkit-box-orient: vertical;
   /* autoprefixer: on */
