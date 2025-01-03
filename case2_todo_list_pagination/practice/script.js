@@ -17,8 +17,9 @@
   const $pagination = get('.pagination');
   const API_URL = `http://localhost:5500/todos`
 
+  // let currentPage = parseInt(1);
+  let currentPage = 1;
   const limit = 5;
-  let currentPage = 11;
   const totalCount = 53;
   const pageCount = 5;
 
@@ -49,7 +50,9 @@
 
     $pagination.innerHTML = html;
     const $currentPageNumber = get(`.pageNumber#page_${currentPage}`);
-    $currentPageNumber.style.color = '#9dc0e9';
+    if (!!$currentPageNumber) {
+      $currentPageNumber.style.color = '#9dc0e9';
+    }
 
     const $currentPageNumbers = document.querySelectorAll('.pagination button');
     $currentPageNumbers.forEach((button) => {
@@ -114,9 +117,9 @@
       const todoElement = createTodoElement(item);
       $todos.appendChild(todoElement);
     });
-
   };
 
+  // const timestamp = new Date().getTime();
   const getTodos = () => {
     fetch(`${API_URL}?_page=${currentPage}&_limit=${limit}`)
       .then((response) => response.json())
@@ -223,7 +226,7 @@
   const init = () => {
     window.addEventListener('DOMContentLoaded', () => {
       getTodos()
-      pagination();
+      pagination()
     })
 
     $form.addEventListener('submit', addTodo)

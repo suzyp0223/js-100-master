@@ -1,4 +1,5 @@
-;(function () {
+// json-server --watch db.json --host localhost --port 5500
+; (function () {
   'use strict'
 
   const get = (target) => {
@@ -12,8 +13,9 @@
   const $form = get('.todo_form')
   const $todoInput = get('.todo_input')
   const $pagination = get('.pagination')
-  const API_URL = `http://localhost:3000/todos`
+  const API_URL = `http://localhost:5500/todos`
 
+  // let currentPage = parseInt(button.innerText, 1);
   let currentPage = 1
   const totalCount = 53
   const pageCount = 5
@@ -46,7 +48,9 @@
 
     $pagination.innerHTML = html
     const $currentPageNumber = get(`.pageNumber#page_${currentPage}`)
-    $currentPageNumber.style.color = '#9dc0e8'
+    if ($currentPageNumber) {
+      $currentPageNumber.style.color = '#9dc0e8'
+    }
 
     const $currentPageNumbers = getAll(`.pagination button`)
     $currentPageNumbers.forEach((button) => {
@@ -100,6 +104,8 @@
     return $todoItem
   }
 
+
+
   const renderAllTodos = (todos) => {
     $todos.innerHTML = ''
     todos.forEach((item) => {
@@ -108,6 +114,16 @@
     })
   }
 
+  // const getTodos = () => {
+  //   fetch(`${API_URL}?_page=${currentPage}&_limit=${limit}`)
+  //     .then((response) => {
+  //       const totalCount = response.headers.get('X-Total-Count'); // 서버가 제공하는 총 데이터 개수.
+  //       return response.json();
+  //     })
+  // .then((todos) => {
+  //   renderAllTodos(todos)
+  //   pagination();
+  // })
   const getTodos = () => {
     fetch(`${API_URL}?_page=${currentPage}&_limit=${limit}`)
       .then((response) => response.json())
