@@ -128,7 +128,7 @@
 
   const playVideo = () => {
     if ($player.paused || $player.ended) {
-      buttonChange($btnPlay, 'pause');
+      buttonChange($btnPlay, 'Pause');
       $player.play();
     } else {
       buttonChange($btnPlay, 'Play');
@@ -139,26 +139,27 @@
   const stopVideo = () => {
     $player.pause();
     $player.currentTime = 0;
-    buttonChange($btnPlay, 'play');
+    buttonChange($btnPlay, 'Play');
   };
 
   const resetPlayer = () => {
     $progress.value = 0;
     $player.currentTime = 0;
+    buttonChange($btnPlay, 'Play');
   };
 
   const replayVideo = () => {
     resetPlayer();
     $player.play();
-    buttonChange($btnPlay, 'pause');
+    buttonChange($btnPlay, 'Pause');
   };
 
   const mute = () => {
-    if ($player.mute) {
-      buttonChange($btnMute, 'mute');
+    if ($player.muted) {
       $player.muted = false;
+      buttonChange($btnMute, 'Mute');
     } else {
-      buttonChange($btnMute, 'unmute');
+      buttonChange($btnMute, 'Unmute');
       $player.muted = true;
     }
   };
